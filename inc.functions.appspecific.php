@@ -450,7 +450,9 @@ function emailCurrentFullShiftDetails($xDays){
 
 	
 	if(!$mail->Send()){
-		echo "Mailer Error: " . $mail->ErrorInfo;}else{
+		echo "Mailer Error: " . $mail->ErrorInfo;
+	}else{
+		echo "Mail Sent!";
 	}
 	
 }
