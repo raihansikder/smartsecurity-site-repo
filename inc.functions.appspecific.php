@@ -236,12 +236,9 @@ function notifySecurityAssignmentAdd($sa_id){
 	global $sendSMS;
 
 	if($sendEmail){
-
 		$q="select * from security_assignment where sa_id='$sa_id'";
 		$r=mysql_query($q)or die(mysql_error());
 		$a_sa=mysql_fetch_assoc($r);
-
-
 		/*
 		*	Send E-mail
 		*/

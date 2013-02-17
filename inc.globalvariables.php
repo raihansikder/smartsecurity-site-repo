@@ -24,19 +24,19 @@ $scriptpath='http://localhost/activation/smartsecurity/site'; //office testing s
 *	Database information and connection
 */
 // Local
-/*
+
 $dbhost='localhost';		
 $dbuser='root';
 $dbpass='';
 $dbname='smartsec_main';
-*/
-// live
 
+// live
+/*
 $dbhost='localhost';		
 $dbuser='smartsec';
 $dbpass='activation';
 $dbname='smartsec_demo1';
-
+*/  
 mysql_select_db($dbname,mysql_connect($dbhost, $dbuser, $dbpass));
 /***********************************/
 /*
