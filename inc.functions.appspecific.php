@@ -434,6 +434,7 @@ function emailCurrentFullShiftDetails($xDays){
 					$Body.= "<a href='$scriptpath/security_assignment_add.php?sa_id=".$arr[$i][sa_id]."&param=edit' class='none'>Edit</a> | ";
 		
 					$Body.= "<a href='$scriptpath/security_assignment_add.php?sa_id=".$arr[$i][sa_id]."&param=view'>View</a>";
+					$Body.= "<a href='$scriptpath/snippets/security_assignment/ajax_notify.php?sa_id=".$arr[$i][sa_id].">Notify</a>";
 				$Body.= "</span></td></tr>";
 			}
 			$Body.="</table>";
