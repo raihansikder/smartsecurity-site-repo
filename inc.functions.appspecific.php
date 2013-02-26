@@ -267,11 +267,10 @@ function notifySecurityAssignmentAdd($sa_id){
 					"Time Efficient Services Pty Ltd" ."$lb".
 					"Trading as True Elegant Security" ."$lb".
 					"Director and Chief Operations Officer (COO)" ."$lb".
-					"Phone: 61 2 9740 4111" ."$lb".
-					"Fax: 61 2 8214 6559" ."$lb".
+					"Phone: 61 2 8580 0118" ."$lb".
 					"Mobile: 0425 304 932" ."$lb".
-					"Suite 7, 183 Lakemba Street," ."$lb".
-					"Lakemba, NSW 2195, Australia" ."$lb".
+					"Rockdale:117 Railway St," ."$lb".
+					"Rockdale NSW 2216(Next to Rockdale Train Station)" ."$lb".
 					"website: www.tesecurity.com.au" ."$lb".
 					"==========================$lb".
 					"</span>"
@@ -377,8 +376,7 @@ function emailCurrentFullShiftDetails($xDays){
 		sa_insert_time=
 			(select max(s2.sa_insert_time) from security_assignment s2
 				where s1.sa_uid=s2.sa_uid)
-		ORDER BY sa_site_id ASC
-		
+		ORDER BY sa_site_id ASC		
 		 ";
 		
 		
