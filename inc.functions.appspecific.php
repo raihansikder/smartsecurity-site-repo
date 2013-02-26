@@ -429,7 +429,7 @@ function emailCurrentFullShiftDetails($xDays){
 				$total_amount+=$amount;
 				$Body.= "<td>".$amount."</td>";
 				$Body.= "<td>- ".$arr[$i][sa_comment]."</td>";
-				$Body.= "<td><span style='width:65px; float:right;'>";
+				$Body.= "<td><span style='width:85px; float:right;'>";
 		
 					$Body.= "<a href='$scriptpath/security_assignment_add.php?sa_id=".$arr[$i][sa_id]."&param=edit' class='none'>Edit</a> | ";
 		
