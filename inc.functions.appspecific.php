@@ -296,7 +296,11 @@ function notifySecurityAssignmentAdd($sa_id){
 			//"Total Amount: 		".round(my_hour_diff($a_sa[sa_start_time],$a_sa[sa_end_time])*$arr[$i][sa_rate],2)."$lb".
 			"Site:".getSiteNameFrmId($a_sa[sa_site_id])."$lb";
 			$to=getUserPhoneFrmId($a_sa[sa_guard_user_id]);
-			if($sendSMS && strlen(trim($to))==12){sendSms($text,$to);}
+			if($sendSMS 				// checks whether SMS flag is enabled in inc.globalvariables.php
+				&& 
+				strlen(trim($to))>6){	// checks whether telephone number lenght is <6. Not a good approach though for checking.
+					sendSms($text,$to);
+			}
 			/******************************************/
 		}
 	}
