@@ -1,7 +1,19 @@
 <?php
 error_reporting(E_ERROR | E_WARNING | E_PARSE );
 session_start();
-@date_default_timezone_set ('Europe/Berlin');
+define('TIMEZONE', 'America/New_York');
+date_default_timezone_set(TIMEZONE);
+SET time_zone='offset';
+
+$now = new \DateTime();
+$mins = $now->getOffset() / 60;
+$sgn = ($mins < 0 ? -1 : 1);
+$mins = abs($mins);
+$hrs = floor($mins / 60);
+$mins -= $hrs * 60;
+$offset = sprintf('%+d:%02d', $hrs*$sgn, $mins);
+$db->exec("SET time_zone='$offset';");
+
 include_once('inc.globalvariables.php');
 include_once('inc.functions.generic.php');
 include_once('inc.functions.appspecific.php');
