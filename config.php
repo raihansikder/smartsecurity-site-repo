@@ -1,40 +1,7 @@
 <?php
 error_reporting(E_ERROR | E_WARNING | E_PARSE );
 session_start();
-function get_timezone_infos() {
-    var now = new Date();
-    var jan1 = new Date(now.getFullYear(), 0, 1, 0, 0, 0, 0);
-    var temp = jan1.toGMTString();
-    var jan2 = new Date(temp.substring(0, temp.lastIndexOf(' ') - 1));
-    var offset = (jan1 - jan2) / (1000);
-
-    var june1 = new Date(now.getFullYear(), 6, 1, 0, 0, 0, 0);
-    temp = june1.toGMTString();
-    var june2 = new Date(temp.substring(0, temp.lastIndexOf(' ') - 1));
-    var dst = offset != ((june1 - june2) / (1000));
-
-    return { offset: offset, dst: dst };
-}
-
-function timezone_options()
-{
-    $zones = array(
-        'Africa', 'America', 'Antarctica', 'Arctic', 'Asia',
-        'Atlantatic', 'Australia', 'Europe', 'Indian', 'Pacific'
-    );
-
-    $list = timezone_identifiers_list();
-    foreach ($list as $zone) {
-        list($zone, $country) = explode('/', $zone);
-        if (in_array($zone, $zones) && isset($country) != '') {
-            $countryStr = str_replace('_', ' ', $country);
-            $locations[$zone][$zone.'/'.$country] = $countryStr;
-        }
-    }
-
-    return $locations;
-}
-@date_default_timezone_set (timezone_options());
+@date_default_timezone_set ('Europe/Paris');
 include_once('inc.globalvariables.php');
 include_once('inc.functions.generic.php');
 include_once('inc.functions.appspecific.php');
