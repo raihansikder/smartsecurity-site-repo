@@ -2,6 +2,8 @@
 include_once('inc.functions.appspecific.temp.php');
 $mail->AddCC("dev@smartsecurity.activationltd.com","Activation Dev Team");
 
+$defaultPopUpConfirmationMsg="Please confirm the action by checking the box to the left.";
+
 function getUserNameFrmId($user_id){
 	$r=mysql_query("select user_name from user where user_id='$user_id'")or die(mysql_error());
 	$a=mysql_fetch_assoc($r);
