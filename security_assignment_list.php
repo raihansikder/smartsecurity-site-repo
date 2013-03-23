@@ -447,23 +447,23 @@ if(strlen($_REQUEST['added_sa_id'])){
 								<tr>
 									<td>Start date: <br> <input name="sa_date_start" type="text" value="<?php echo addEditInputField('sa_date_start'); ?>" size="20" readonly="readonly" style="float: none;" /> <input name="sa_date_start_datetime" id="sa_date_start_datetime" type="hidden" value="<?php echo addEditInputField('sa_date_start_datetime'); ?>" size="20" class="" readonly="readonly" />
 										<script>
-                                            $("input[name=sa_date_start]").datepicker({
-                                                dateFormat: "dd-MM-yy",
-                                                altField: "#sa_date_start_datetime",
-                                                altFormat: "yy-mm-dd"
-                                            });
-                                        </script>
+												$("input[name=sa_date_start]").datepicker({
+														dateFormat: "dd-MM-yy",
+														altField: "#sa_date_start_datetime",
+														altFormat: "yy-mm-dd"
+												});
+										</script>
 									</td>
 								</tr>
 								<tr>
 									<td>End date: <br> <input name="sa_date_end" type="text" value="<?php echo addEditInputField('sa_date_end'); ?>" size="20" class="" readonly="readonly" style="float: none;" /> <input name="sa_date_end_datetime" id="sa_date_end_datetime" type="hidden" value="<?php echo addEditInputField('sa_date_end_datetime'); ?>" size="20" class="" readonly="readonly" />
 									<script>
-                                            $("input[name=sa_date_end]").datepicker({
-                                                dateFormat: "dd-MM-yy",
-                                                altField: "#sa_date_end_datetime",
-                                                altFormat: "yy-mm-dd"
-                                            });
-                                        </script>
+											$("input[name=sa_date_end]").datepicker({
+													dateFormat: "dd-MM-yy",
+													altField: "#sa_date_end_datetime",
+													altFormat: "yy-mm-dd"
+											});
+									</script>
 									</td>
 								</tr>
 								<tr>
