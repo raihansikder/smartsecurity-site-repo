@@ -3,7 +3,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE );
 session_start();
 define('TIMEZONE', 'America/New_York');
 date_default_timezone_set(TIMEZONE);
-SET time_zone='offset';
+SET time_zone="offset";
 
 $now = new \DateTime();
 $mins = $now->getOffset() / 60;
