@@ -34,7 +34,7 @@ function timezone_options()
 
     return $locations;
 }
-@date_default_timezone_set ('timezone_options()');
+@date_default_timezone_set (timezone_options());
 include_once('inc.globalvariables.php');
 include_once('inc.functions.generic.php');
 include_once('inc.functions.appspecific.php');
