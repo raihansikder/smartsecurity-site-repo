@@ -143,11 +143,7 @@ $a=mysql_fetch_assoc($r);
 						echo ' selected="selected" ';
 					}
        				?>> 
-					<?php echo $ua[user_fullname];
-					if(hasApprover($ua[user_id])){ // checks whether the given set of user ids(comma separated if multiple) have at least one user with costsheet approval priviledge
-						echo ' (Approver)';
-					}
-					?> </option>
+					<?php echo $ua[user_fullname];?> </option>
             <?php } ?>
           </select>
             </td>
