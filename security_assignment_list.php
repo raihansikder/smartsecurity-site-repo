@@ -443,7 +443,7 @@ if (strlen($_REQUEST['added_sa_id'])) {
                                         </tr>
                                         <tr>
                                             <td>Year: <br />
-                                                <input name="sa_year" type="text" value="<?php echo addEditInputField('sa_year'); ?>" size="20" class="validate[min[2012], max[9999], custom[number]]" style="float: none;" placeholder="2012" />
+                                                <input name="sa_year" type="text" value="<?php echo addEditInputField('sa_year'); ?>" size="20" class="validate[min[2012], max[9999], custom[number]]" style="float: none;" />
                                             </td>
                                         </tr>
                                         <?php if (hasPermission('security_assignment', 'delete', $_SESSION[current_user_id])) { ?>
