@@ -64,22 +64,39 @@ $rows = mysql_num_rows($result);
             <div id="footer">
                 <?php include('footer.php'); ?>
             </div>
+            
+            <div id="dialog-confirm" class="validationEngineContainer" style="display: none;" title="Confirm Your Action">
+               <input name="confirm_checkbox" id="confirm_checkbox" type="checkbox" value="confirmed" class="validate[required]" /><span style="float: left; margin: 0 7px 20px 0;"></span>Please confirm the action by checking the box to the left.
+            </div>
         </div>
     </body>
 </html>
 <script type="text/javascript">
-    /* Identify click event on an image that has class ‘delete_client’ */
-    $('img[class=delete_client]').click(function(){
-        
-        /* Define the php file with DB Query execution code. (for AJAX)*/   
-        
-        var loadUrl="snippets/client/ajax_delete_client.php";
-        
-        /* Define gif image to show temporarily when the AJAX executes*/    
-        var ajax_load="<img src='images/ajax-loader-1.gif' class='loading'  alt='loading...' />";   
-        /* Get teh id from the IMG that was just clicked $(this) means the this image that was just clicked*/    
+    /* Identify click event on an image that has class ?delete_client? */
+  
+    $('img[class=delete_client]').click(function() {
         var client_id = $(this).attr("id");
-        //alert(sa_uid);
+        $( "#dialog-confirm" ).dialog({
+            resizable: false,
+            buttons: {
+                "Delete": function() {
+    				  if($('#confirm_checkbox').prop('checked')){                  
+                    deleteRow(client_id);					
+						
+                    $( this ).dialog( "close" );
+					}
+                },
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+    });
+    function deleteRow(client_id){        
+        var loadUrl="snippets/client/ajax_delete_client.php";        
+  
+        var ajax_load="<img src='images/ajax-loader-1.gif' class='loading'  alt='loading...' />";   
+
         
         $(this).html(ajax_load); // ignore
         $.ajax({           
@@ -99,6 +116,6 @@ $rows = mysql_num_rows($result);
                 alert(msg);   
             }
         });
-        
-    })
+    }
+
 </script>
