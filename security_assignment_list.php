@@ -412,7 +412,10 @@ if (strlen($_REQUEST['added_sa_id'])) {
                                                     $("input[name=sa_date_start]").datepicker({
                                                         dateFormat: "dd-MM-yy",
                                                         altField: "#sa_date_start_datetime",
-                                                        altFormat: "yy-mm-dd"
+                                                        altFormat: "yy-mm-dd",
+                                                        onSelect: function() {
+                                                            disableWeekMonthYear();
+                                                        }
                                                     });
                                                 </script>
                                             </td>
@@ -425,14 +428,30 @@ if (strlen($_REQUEST['added_sa_id'])) {
                                                     $("input[name=sa_date_end]").datepicker({
                                                         dateFormat: "dd-MM-yy",
                                                         altField: "#sa_date_end_datetime",
-                                                        altFormat: "yy-mm-dd"
+                                                        altFormat: "yy-mm-dd",
+                                                        onSelect: function() {
+                                                            disableWeekMonthYear();
+                                                        }
                                                     });
+                                                    function disableWeekMonthYear(){
+                                                        var sa_date_start_datetime= $("#sa_date_start_datetime").val();
+                                                        var sa_date_end_datetime= $("#sa_date_end_datetime").val();
+                                                        
+                                                        if (sa_date_end_datetime != "" && sa_date_start_datetime != ""){
+                                                            $("#sa_week_number").val("");
+                                                            $("#sa_week_number").attr("disabled", "disabled");
+                                                            $("#sa_month").val("");
+                                                            $("#sa_month").attr("disabled", "disabled");
+                                                            $("#sa_year").val("");
+                                                            $("#sa_year").attr("disabled", "disabled");
+                                                        }
+                                                    }
                                                 </script>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Week Number: <br />
-                                                <input name="sa_week_number" type="text" value="<?php echo addEditInputField('sa_week_number'); ?>" size="20" class="validate[min[1], max[54], custom[number]]" style="float: none;" />
+                                                <input id="sa_week_number" name="sa_week_number" type="text" value="<?php echo addEditInputField('sa_week_number'); ?>" size="20" class="validate[min[1], max[54], custom[number]]" style="float: none;" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -443,7 +462,7 @@ if (strlen($_REQUEST['added_sa_id'])) {
                                         </tr>
                                         <tr>
                                             <td>Year: <br />
-                                                <input name="sa_year" type="text" value="<?php echo addEditInputField('sa_year'); ?>" size="20" class="validate[min[2012], max[9999], custom[number]]" style="float: none;" />
+                                                <input id ="sa_year" name="sa_year" type="text" value="<?php echo addEditInputField('sa_year'); ?>" size="20" class="validate[min[2012], max[9999], custom[number]]" style="float: none;" />
                                             </td>
                                         </tr>
                                         <?php if (hasPermission('security_assignment', 'delete', $_SESSION[current_user_id])) { ?>
