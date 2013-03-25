@@ -446,14 +446,23 @@ if (strlen($_REQUEST['added_sa_id'])) {
                                                             $("#sa_year").attr("disabled", "disabled");
                                                         }
                                                     }
+                                                    
+                                                    
                                                 </script>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Week Number: <br />
-                                                <input id="sa_week_number" name="sa_week_number" type="text" value="<?php echo addEditInputField('sa_week_number'); ?>" size="20" class="validate[min[1], max[54], custom[number]]" style="float: none;" />
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td>Week Number: <br />
+                                                    <input id="sa_week_number" name="sa_week_number" type="text" value="<?php echo addEditInputField('sa_week_number'); ?>" size="20" class="validate[min[1], max[54], custom[number]]" style="float: none;" />
+                                                </td>
+                                                <script type="text/javascript">
+                                                    $("#sa_week_number").blur(function (){ loadCurrentYear(); });
+                                                    function loadCurrentYear(){                                                                                                                
+                                                        var currentYear = (new Date).getFullYear();
+                                                        $("#sa_year").val(currentYear);
+                                                    }    
+                                                </script>
+                                            </tr>
                                         <tr>
                                             <td>Month: <br />
                                                 <?php createDropdown($month_arr, 'sa_month'); ?>
