@@ -60,6 +60,9 @@ $rows = mysql_num_rows($result);
             <div id="footer">
                 <?php include('footer.php'); ?>
             </div>
+            <div id="dialog-confirm" style="display: none;" title="Confirm Your Action">
+               <input name="confirm_checkbox" id="confirm_checkbox" type="checkbox" value="confirmed" class="validate[required]" /><span style="float: left; margin: 0 7px 20px 0;"></span>Please confirm the action by checking the box to the left.
+            </div>
         </div>
     </body>
 </html>
@@ -74,39 +77,50 @@ $rows = mysql_num_rows($result);
  * Developers Note      : 
  */-->
 <script type="text/javascript">
-    /* Identify click event on an image that has class ‘delete_assignment’ */
-    $('img[class=delete_security_site]').click(function(){
-        
-        /* Define the php file with DB Query execution code. (for AJAX)*/   
-        
-        var loadUrl="snippets/security_site/ajax_delete_security_site.php";
-        
-        /* Define gif image to show temporarily when the AJAX executes*/    
+    /* Identify click event on an image that has class ?delete_client? */
+  
+    $('img[class=delete_security_site]').click(function() {
+        var client_id = $(this).attr("id");
+        $( "#dialog-confirm" ).dialog({
+            resizable: false,
+            buttons: {
+                "Delete": function() {
+    				  if($('#confirm_checkbox').prop('checked')){                  
+                    deleteRow(client_id);					
+						
+                    $( this ).dialog( "close" );
+					}
+                },
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+    });
+    function deleteRow(client_id){        
+        var loadUrl="snippets/security_site/ajax_delete_security_site.php";        
+  
         var ajax_load="<img src='images/ajax-loader-1.gif' class='loading'  alt='loading...' />";   
-        /* Get teh id from the IMG that was just clicked $(this) means the this image that was just clicked*/    
-        var ss_id = $(this).attr("id");
-        //alert(sa_uid);
+
         
         $(this).html(ajax_load); // ignore
         $.ajax({           
             type: "POST",
             url: loadUrl,
-            data: { ss_id: ss_id}// ID that needs to be passed to php
+            data: { client_id: client_id}// ID that needs to be passed to php
         }).done(function( msg ) {
             //alert( "Data Saved: " + msg );
             $('.loading').hide();  // ignore
             if(msg=='success'){
                 // Make the row read    
-                $('tr[id='+ss_id+']').css("background-color","red","color","white");
+                $('tr[id='+client_id+']').css("background-color","red","color","white");
                 // Remove the row from table
-                $('tr[id='+ss_id+']').fadeOut('slow');
+                $('tr[id='+client_id+']').fadeOut('slow');
                 //$('#port_of_loading_loader').html(msg);
             }else{
                 alert(msg);   
             }
         });
-        
-    })
-</script>
+    }
 
-<!--END | ajax call to delete a Security Site-->
+</script>
