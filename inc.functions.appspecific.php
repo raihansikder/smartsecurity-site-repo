@@ -299,7 +299,7 @@ function notifySecurityAssignmentAdd($sa_id){
 			"Site:".getSiteNameFrmId($a_sa[sa_site_id])."$lb";
 			$to=getUserPhoneFrmId($a_sa[sa_guard_user_id]);
 			if($sendSMS 				// checks whether SMS flag is enabled in inc.globalvariables.php
-				&& 
+				&&
 				strlen(trim($to))>6){	// checks whether telephone number lenght is <6. Not a good approach though for checking.
 					sendSms($text,$to);
 			}
@@ -353,7 +353,7 @@ function getGuardsTotalHour($user_id){
 			(select max(s2.sa_insert_time) from security_assignment s2
 				where s1.sa_uid=s2.sa_uid)
 		";
-	
+
 	$r=mysql_query($q)or die(mysql_error()."<br><b>Query:</b> $q<br>");
 
 	$rows=mysql_num_rows($r);
@@ -382,10 +382,10 @@ function emailCurrentFullShiftDetails($xDays){
 		sa_insert_time=
 			(select max(s2.sa_insert_time) from security_assignment s2
 				where s1.sa_uid=s2.sa_uid)
-		ORDER BY sa_site_id ASC		
+		ORDER BY sa_site_id ASC
 		 ";
-		
-		
+
+
 		echo "<br><b>Query:</b> $q_filtered<br>";
 		$r = mysql_query($q_filtered) or die(mysql_error()."<br><b>Query:</b> $q_filtered<br>");
 		$rows = mysql_num_rows($r);
@@ -393,7 +393,7 @@ function emailCurrentFullShiftDetails($xDays){
 		$arr = mysql_fetch_rowsarr($r);
 		}
 		$dateFormat="d-M-Y";
-		
+
 		$Body.="<h1>Security job for ".date('d-M-Y (l)',strtotime($targetDate))."</h1>";
 		$Body.="<table border='1' style='font-family:Verdana, Geneva, sans-serif; font-size:11px'>
 			<tr style='font-weight:bold'>
@@ -413,7 +413,7 @@ function emailCurrentFullShiftDetails($xDays){
 			  <td>Action</td>
 			</tr>
 		  ";
-		
+
 			$total_hours=0;
 			$total_amount=0;
 			for ($i = 0; $i < $rows; $i++) {
@@ -436,9 +436,9 @@ function emailCurrentFullShiftDetails($xDays){
 				$Body.= "<td>".$amount."</td>";
 				$Body.= "<td>- ".$arr[$i][sa_comment]."</td>";
 				$Body.= "<td><span style='width:115px; float:right;'>";
-		
+
 					$Body.= "<a href='$scriptpath/security_assignment_add.php?sa_id=".$arr[$i][sa_id]."&param=edit' class='none'>Edit</a> | ";
-		
+
 					$Body.= "<a href='$scriptpath/security_assignment_add.php?sa_id=".$arr[$i][sa_id]."&param=view'>View</a> | ";
 					$Body.= "<a href='$scriptpath/snippets/security_assignment/ajax_notify.php?sa_id=".$arr[$i][sa_id]."'>Notify</a>";
 				$Body.= "</span></td></tr>";
@@ -455,13 +455,14 @@ function emailCurrentFullShiftDetails($xDays){
 	$mail->Subject = $Subject;
 	$mail->Body = $Body;
 
-	
+
 	if(!$mail->Send()){
-		echo "Mailer Error: " . $mail->ErrorInfo;
+	  echo "Mailer Error: " . $mail->ErrorInfo;
 	}else{
-		echo "Mail Sent!";
+	  echo "Mail Sent!";
+	  $mail->ClearAllRecipients();
 	}
-	
+
 }
 
 function currentUserIsGuard(){
