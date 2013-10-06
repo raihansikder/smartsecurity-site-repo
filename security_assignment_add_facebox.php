@@ -37,7 +37,7 @@ if($param=='add' || $param=='edit'){
 			//echo $sql;
 			mysql_query($sql) or die(mysql_error()); 
 			$sa_id=mysql_insert_id();	
-			//notifySecurityAssignmentAdd($sa_id);		
+			notifySecurityAssignmentAdd($sa_id); // sends email and sms		
 			array_push($alert,"The security assignment is registered successfully!");
 			$param="edit";
 			header("location:security_assignment_list.php?added_sa_id=$sa_id&sa_client_id[]=".$_REQUEST["sa_client_id"]);
