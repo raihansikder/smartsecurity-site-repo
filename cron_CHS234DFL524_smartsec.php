@@ -30,7 +30,8 @@ if($rows>0){
 	}
 }
 */
-emailCurrentFullShiftDetails(2);	
+emailCurrentFullShiftDetails(2);
+sendSecurityLicenceExpiryAlert(30);
 
 //session_destroy();
 ?>
