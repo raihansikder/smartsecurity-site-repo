@@ -173,6 +173,11 @@ if(mysql_num_rows($r)){$a=mysql_fetch_assoc($r);}
             	<span class="small">SMS notification will be sent to this number. Use a valid number format(i.e +61...)</span></td></td>
           </tr>
           <tr>
+            <td>Guard License Expiry date:</td>
+            <td><input name="user_license_expiry_date" type="text" value="<?php echo addEditInputField('user_license_expiry_date'); ?>" size="30" maxlength="60"/>
+            </td>
+          </tr>
+          <tr>
             <td>Other Information:</td>
             <td><textarea name="user_other_info" cols="30" class=""><?php echo addEditInputField('user_other_info'); ?></textarea></td>
           </tr>
@@ -187,5 +192,10 @@ if(mysql_num_rows($r)){$a=mysql_fetch_assoc($r);}
   </div>
   <div id="footer"><?php include('footer.php');?></div>
 </div>
+<script>                                                   
+$("input[name=user_license_expiry_date]").datepicker({
+    dateFormat: "yy-mm-dd"
+});
+ </script>
 </body>
 </html>
