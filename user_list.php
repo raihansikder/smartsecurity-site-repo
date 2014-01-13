@@ -81,8 +81,8 @@ $rows=mysql_num_rows($result);
   <div id="footer">
     <?php include('footer.php');?>
   </div>
-              <div id="dialog-confirm" style="display: none;" title="Confirm Your Action">
-               <input name="confirm_checkbox" id="confirm_checkbox" type="checkbox" value="confirmed" class="validate[required]" /><span style="float: left; margin: 0 7px 20px 0;"></span>Please confirm the action by checking the box to the left.
+            <div id="dialog-confirm" style="display: none;" title="Confirm Your Action">
+               <input name="confirm_checkbox" id="confirm_checkbox" type="checkbox" value="confirmed" class="validate[required]"/><span style="float: left; margin: 0 7px 20px 0;"></span>Please confirm the action by checking the box to the left.
             </div>
 </div>
 </body>
@@ -96,19 +96,25 @@ $rows=mysql_num_rows($result);
             resizable: false,
             buttons: {
                 "Delete": function() {
-					  if($('#confirm_checkbox').prop('checked')){                  
-                    deleteRow(client_id);					
-						
-                    $( this ).dialog( "close" );
+				if($('#confirm_checkbox').attr('checked')){                  
+                    deleteRow(client_id);		
+                    var checkboxes = document.getElementById('confirm_checkbox');
+                    checkboxes.checked = false;			
+                  $( this ).dialog( "close" );
 					}
                 },
                 Cancel: function() {
+                    var checkboxes = document.getElementById('confirm_checkbox');
+                    checkboxes.checked = false;
                     $( this ).dialog( "close" );
                 }
+              
             }
         });
     });
-    function deleteRow(client_id){        
+
+
+    function deleteRow(user_id){        
         var loadUrl="snippets/user/ajax_delete_user.php";        
   
         var ajax_load="<img src='images/ajax-loader-1.gif' class='loading'  alt='loading...' />";   
@@ -118,15 +124,15 @@ $rows=mysql_num_rows($result);
         $.ajax({           
             type: "POST",
             url: loadUrl,
-            data: { client_id: client_id}// ID that needs to be passed to php
+            data: { user_id: user_id}// ID that needs to be passed to php
         }).done(function( msg ) {
             //alert( "Data Saved: " + msg );
             $('.loading').hide();  // ignore
             if(msg=='success'){
                 // Make the row read    
-                $('tr[id='+client_id+']').css("background-color","red","color","white");
+                $('tr[id='+user_id+']').css("background-color","red","color","white");
                 // Remove the row from table
-                $('tr[id='+client_id+']').fadeOut('slow');
+                $('tr[id='+user_id+']').fadeOut('slow');
                 //$('#port_of_loading_loader').html(msg);
             }else{
                 alert(msg);   

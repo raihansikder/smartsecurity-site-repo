@@ -82,11 +82,14 @@ $rows = mysql_num_rows($result);
                 "Delete": function() {
     				  if($('#confirm_checkbox').prop('checked')){                  
                     deleteRow(client_id);					
-						
+                    var checkboxes = document.getElementById('confirm_checkbox');
+                    checkboxes.checked = false;	
                     $( this ).dialog( "close" );
 					}
                 },
                 Cancel: function() {
+                    var checkboxes = document.getElementById('confirm_checkbox');
+                    checkboxes.checked = false;
                     $( this ).dialog( "close" );
                 }
             }

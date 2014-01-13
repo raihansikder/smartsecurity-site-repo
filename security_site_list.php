@@ -87,17 +87,20 @@ $rows = mysql_num_rows($result);
                 "Delete": function() {
     				  if($('#confirm_checkbox').prop('checked')){                  
                     deleteRow(client_id);					
-						
+                    var checkboxes = document.getElementById('confirm_checkbox');
+                    checkboxes.checked = false;
                     $( this ).dialog( "close" );
 					}
                 },
                 Cancel: function() {
+                    var checkboxes = document.getElementById('confirm_checkbox');
+                    checkboxes.checked = false;
                     $( this ).dialog( "close" );
                 }
             }
         });
     });
-    function deleteRow(client_id){        
+    function deleteRow(ss_id){        
         var loadUrl="snippets/security_site/ajax_delete_security_site.php";        
   
         var ajax_load="<img src='images/ajax-loader-1.gif' class='loading'  alt='loading...' />";   
@@ -107,15 +110,15 @@ $rows = mysql_num_rows($result);
         $.ajax({           
             type: "POST",
             url: loadUrl,
-            data: { client_id: client_id}// ID that needs to be passed to php
+            data: { ss_id: ss_id}// ID that needs to be passed to php
         }).done(function( msg ) {
             //alert( "Data Saved: " + msg );
             $('.loading').hide();  // ignore
             if(msg=='success'){
                 // Make the row read    
-                $('tr[id='+client_id+']').css("background-color","red","color","white");
+                $('tr[id='+ss_id+']').css("background-color","red","color","white");
                 // Remove the row from table
-                $('tr[id='+client_id+']').fadeOut('slow');
+                $('tr[id='+ss_id+']').fadeOut('slow');
                 //$('#port_of_loading_loader').html(msg);
             }else{
                 alert(msg);   
