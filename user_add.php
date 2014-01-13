@@ -168,13 +168,34 @@ if(mysql_num_rows($r)){$a=mysql_fetch_assoc($r);}
             <td><input name="user_fullname" type="text" value="<?php echo addEditInputField('user_fullname'); ?>" size="30" maxlength="60"  class="validate[required]"/></td>
           </tr>
           <tr>
-            <td>Phone:</td>
+            <td>Primary Number:</td>
             <td><input name="user_phone" type="text" value="<?php echo addEditInputField('user_phone'); ?>" size="30" maxlength="60"  class="validate[required]"/>
             	<span class="small">SMS notification will be sent to this number. Use a valid number format(i.e +61...)</span></td></td>
           </tr>
           <tr>
+            <tr>
+            <td>Secondary Number:</td>
+            <td><input name="user_phone_secondary" type="text" value="<?php echo addEditInputField('user_phone_secondary'); ?>" size="30" maxlength="60"/>
+            	<span class="small">SMS notification will be sent to this number. Use a valid number format(i.e +61...)</span></td></td>
+          </tr>
+          <tr>
+            <td>Guard License Issue date:</td>
+            <td><input name="user_license_issue_date" type="text" value="<?php echo addEditInputField('user_license_issue_date'); ?>" size="30" maxlength="60"/>
+            </td>
+          </tr>
+          <tr>
             <td>Guard License Expiry date:</td>
             <td><input name="user_license_expiry_date" type="text" value="<?php echo addEditInputField('user_license_expiry_date'); ?>" size="30" maxlength="60"/>
+            </td>
+          </tr>
+           <tr>
+            <td>First Aid Issue Date:</td>
+            <td><input name="user_first_aid_issue_date" type="text" value="<?php echo addEditInputField('user_first_aid_issue_date'); ?>" size="30" maxlength="60"/>
+            </td>
+          </tr>
+          <tr>
+            <td>First Aid Expiry Date:</td>
+            <td><input name="user_first_aid_expiry_date" type="text" value="<?php echo addEditInputField('user_first_aid_expiry_date'); ?>" size="30" maxlength="60"/>
             </td>
           </tr>
           <tr>
@@ -192,7 +213,18 @@ if(mysql_num_rows($r)){$a=mysql_fetch_assoc($r);}
   </div>
   <div id="footer"><?php include('footer.php');?></div>
 </div>
-<script>                                                   
+<script>
+$("input[name=user_license_issue_date]").datepicker({
+    dateFormat: "yy-mm-dd"
+});
+
+$("input[name=user_first_aid_issue_date]").datepicker({
+    dateFormat: "yy-mm-dd"
+});
+
+$("input[name=user_first_aid_expiry_date]").datepicker({
+    dateFormat: "yy-mm-dd"
+});
 $("input[name=user_license_expiry_date]").datepicker({
     dateFormat: "yy-mm-dd"
 });

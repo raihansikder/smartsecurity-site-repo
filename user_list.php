@@ -28,10 +28,15 @@ $rows=mysql_num_rows($result);
       <table id="datatable" width="100%" >
       <thead>
         <tr>
-          <td >User name - [id]</td>
+          <td >S/L</td>
           <td >Full name</td>
-          <td >e-mail</td>
-          <td >Phone</td>
+          <td>License Issue Date</td>
+          <td>License Expiry Date</td>
+          <td>First Aid Issue Date</td>
+          <td>First Aid Expiry Date</td>
+          <td>e-mail</td>
+          <td>Primary Number</td>
+          <td>Secondary Number</td>
           <td >type</td>
           <td >Action</td>
         </tr>
@@ -39,12 +44,17 @@ $rows=mysql_num_rows($result);
         <tbody>
         <?php for($i=0;$i<$rows;$i++){?>
          <tr id="<?php echo $arr[$i][user_id]; ?>" >
-          <td><?php echo $arr[$i][user_name]." <span='small'> [".$arr[$i][user_id]."]</span>";?></td>
+          <td><?php echo $arr[$i][user_id];?></td>
           <td><?php echo $arr[$i][user_fullname]?></td>
-          <td><?php echo $arr[$i][user_email]?></td>
+          <td><?php echo $arr[$i][user_license_issue_date]?></td>
+          <td><?php echo $arr[$i][user_license_expiry_date]?></td>
+          <td><?php echo $arr[$i][user_first_aid_issue_date]?></td>
+          <td><?php echo $arr[$i][user_first_aid_expiry_date]?></td>
+          <td width="100"><?php echo $arr[$i][user_email]?></td>
           <td><?php echo $arr[$i][user_phone]?></td>
+          <td><?php echo $arr[$i][user_phone_secondary]?></td>
           <td><?php echo getUserTypeName($arr[$i][user_type_id]);?></td>
-          <td>
+          <td  width="70">
           <?php 
           
 		  if(hasPermission('user', 'edit', $_SESSION[current_user_id])){
