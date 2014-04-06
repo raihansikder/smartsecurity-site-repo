@@ -28,7 +28,7 @@ $scriptpath='http://localhost/activation/smartsecurity/site'; //office testing s
 $dbhost='localhost';		
 $dbuser='root';
 $dbpass='';
-$dbname='smartsec_main';
+$dbname='smartsec_tesecurity';
 
 // live
 /*

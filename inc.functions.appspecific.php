@@ -2,6 +2,12 @@
 include_once('inc.functions.appspecific.temp.php');
 $mail->AddCC("dev@smartsecurity.activationltd.com","Activation Dev Team");
 
+/**
+ * if $notificationOnAssignmentAdd=true then notification is triggered everytime security_assignment_add.php runs and adds an assignment.
+ */
+$notificationOnAssignmentAdd=false;
+
+
 $defaultPopUpConfirmationMsg="Please confirm the action by checking the box to the left.";
 
 function getUserNameFrmId($user_id){
