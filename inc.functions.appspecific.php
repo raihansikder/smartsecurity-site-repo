@@ -428,13 +428,13 @@ function emailCurrentFullShiftDetails($xDays) {
     $Body.="<h1>Security job for " . date('d-M-Y (l)', strtotime($targetDate)) . "</h1>";
     $Body.="<table border='1' style='font-family:Verdana, Geneva, sans-serif; font-size:11px'>
 			<tr style='font-weight:bold'>
-			  <td>Week</td>
+			  <!--<td>Week</td>-->
 			  <td>Start_date</td>
-			  <td>Day</td>
+			  <!--<td>Day</td>-->
 			  <td>Start</td>
 			  <td>End</td>
 			  <td>Requested by</td>
-			  <td>Company /Client</td>
+			  <!--<td>Company /Client</td>-->
 			  <td>Site</td>
 			  <td>Guard</td>
               <td>Hours</td>";
@@ -444,8 +444,8 @@ function emailCurrentFullShiftDetails($xDays) {
     }
 
     $Body.="
-			  <td>Comment</td>
-			  <td>Action</td>
+			  <!--<td>Comment</td>-->
+			  <!--<td>Action</td>-->
 			</tr>
 		  ";
 
@@ -453,13 +453,13 @@ function emailCurrentFullShiftDetails($xDays) {
     $total_amount = 0;
     for ($i = 0; $i < $rows; $i++) {
       $Body.= "<tr>";
-      $Body.= "<td><b>W" . date("W", strtotime($arr[$i][sa_start_time])) . "</b></td>";
+      $Body.= "<!--<td><b>W" . date("W", strtotime($arr[$i][sa_start_time])) . "</b></td>-->";
       $Body.= "<td>" . date('d-M-Y', strtotime($arr[$i][sa_start_time])) . "</td>";
-      $Body.= "<td>" . date('l', strtotime($arr[$i][sa_start_time])) . "</td>";
+      $Body.= "<!--<td>" . date('l', strtotime($arr[$i][sa_start_time])) . "</td>-->";
       $Body.= "<td class='greenText'>" . date('H:i', strtotime($arr[$i][sa_start_time])) . "</td>";
       $Body.= "<td class='orangeText'>" . date('H:i', strtotime($arr[$i][sa_end_time])) . "</td>";
       $Body.= "<td>" . getUserFullNameFrmId($arr[$i][sa_requested_by_user_id]) . "</td>";
-      $Body.= "<td>" . getClientCompanyNameFrmId($arr[$i][sa_client_id]) . "</td>";
+      $Body.= "<!--<td>" . getClientCompanyNameFrmId($arr[$i][sa_client_id]) . "</td>-->";
       $Body.= "<td>" . getSiteNameFrmId($arr[$i][sa_site_id]) . "</td>";
       $Body.= "<td>" . getUserFullNameFrmId($arr[$i][sa_guard_user_id]) . "</td>";
       $hour = round(my_hour_diff($arr[$i][sa_start_time], $arr[$i][sa_end_time]), 2);
@@ -474,14 +474,14 @@ function emailCurrentFullShiftDetails($xDays) {
       }
 
 
-      $Body.= "<td>- " . $arr[$i][sa_comment] . "</td>";
-      $Body.= "<td><span style='width:115px; float:right;'>";
+      $Body.= "<!--<td>- " . $arr[$i][sa_comment] . "</td>-->";
+      $Body.= "<!--<td><span style='width:115px; float:right;'>";
 
       $Body.= "<a href='$scriptpath/security_assignment_add.php?sa_id=" . $arr[$i][sa_id] . "&param=edit' class='none'>Edit</a> | ";
 
       $Body.= "<a href='$scriptpath/security_assignment_add.php?sa_id=" . $arr[$i][sa_id] . "&param=view'>View</a> | ";
       $Body.= "<a href='$scriptpath/snippets/security_assignment/ajax_notify.php?sa_id=" . $arr[$i][sa_id] . "'>Notify</a>";
-      $Body.= "</span></td></tr>";
+      $Body.= "</span></td></tr>-->";
     }
     $Body.="</table>";
   }
