@@ -342,6 +342,10 @@ function notifySecurityAssignmentAdd($sa_id) {
   }
 }
 
+/**
+ * @param $text
+ * @param $to
+ */
 function sendSms($text, $to) {
   global $clickatell_user;
   global $clickatell_password;
@@ -491,6 +495,12 @@ function emailCurrentFullShiftDetails($xDays) {
   $mail->AddAddress('raihan.act@gmail.com', 'Raihan');
   $mail->AddAddress('tesops@gmail.com', 'Tes Operations');
   $mail->AddAddress('tesriya@gmail.com', 'TES Riya');
+  // tessunny03@gmail.com ; teszahid@gmail.com; tesraj07@gmail.com
+  $mail->AddAddress('tessunny03@gmail.com', 'TES Sunny');
+  $mail->AddAddress('teszahid@gmail.com', 'TES Zahid');
+  $mail->AddAddress('tesraj07@gmail.com', 'TES Raj');
+
+
   $Subject = "[Auto-email] SmartSecurity Roster update at - " . date("F j, Y, g:i a");
   $mail->Subject = $Subject;
   $mail->Body = $Body;
